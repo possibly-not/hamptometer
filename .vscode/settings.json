@@ -93,7 +93,8 @@
         "httpd.h": "c",
         "config.h": "c",
         "double.h": "c",
-        "sf_table.h": "c"
+        "sf_table.h": "c",
+        "utils.h": "c"
     },
     "cmake.configureOnOpen": false
 }

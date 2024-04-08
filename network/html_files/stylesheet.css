@@ -4,5 +4,12 @@ body {
   
   h1 {
     color: navy;
-    margin-left: 20px;
+    margin-left: 0px;
   }
+
+  @keyframes wheel_spin {
+    from { transform: rotate(0deg) }
+    to { transform: rotate(360deg) }
+  }
+  .wheel_spin { animation: spin 3s linear infinite; }
+  
