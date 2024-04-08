@@ -4,8 +4,8 @@
         <title>Hamster Pedometer</title> 
     </head>
     <body> <h1>Spin counter:</h1>
-        <br>
         <p>Counter: <!--#counter--></p>
+        <p>Distance ran on a 28.5cm wheel: <!--#dist--></p>
         <a href="/index.shtml">Refresh</a>
    </body>
 </html>

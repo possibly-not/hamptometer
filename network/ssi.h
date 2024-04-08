@@ -5,12 +5,13 @@
 #include "pico/cyw43_arch.h"
 #include "hardware/adc.h"
 
+#include "config.h"
 
 uint32_t counter = 0;
 
 
 // SSI tags - tag length limited to 8 bytes by default
-const char * ssi_tags[] = {"counter"};
+const char * ssi_tags[] = {"counter", "dist"};
 
 u16_t ssi_handler(int iIndex, char *pcInsert, int iInsertLen) {
   size_t printed;
@@ -20,6 +21,12 @@ u16_t ssi_handler(int iIndex, char *pcInsert, int iInsertLen) {
       printed = snprintf(pcInsert, iInsertLen, "%d", counter);
     }
     break;
+  case 1: // counter distance
+    {
+      printed = snprintf(pcInsert, iInsertLen, "%.05fkm", (counter * WHEEL_SIZE_CM * PI) * 0.00001);
+    }
+    break;
+
   default:
     printed = 0; // bogos binted
     break;
