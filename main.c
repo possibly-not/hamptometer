@@ -21,6 +21,7 @@
 int main(void)
 {
     stdio_init_all();
+    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, LED_SETUP);
 
     printf("%s %d\n", COMPILED_ON, getFreeHeap());
 
@@ -66,6 +67,7 @@ int main(void)
     bool bounce = true;
 
 
+    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, LED_DONE);
     while (good)
     {
         uint16_t result = adc_read();
