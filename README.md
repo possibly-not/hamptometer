@@ -15,6 +15,7 @@ I have the hall effect sensor head-on towards the magnet, however based on the m
 ```
 git clone the repo
 cd hamptometer
+git submodule update --init picowota
 mkdir build
 cd build
 cmake .. -DPICO_BOARD="pico_w" -DWIFI_SSID="your_ssid!!" -DWIFI_PASSWORD="your_password!!"
@@ -23,6 +24,11 @@ picotool load main.uf2 -f # or however you want to load it, drag-and-drop or ope
 ```
 
 The Pico will leave it's LED on while setting up, and turn it off once connected to Wi-Fi and setup the HTTP server. 
+
+### Picowota
+To reflash the Pico without connecting it to your PC we use Picowota, this puts a Wi-Fi bootloader into flash that connects to Wi-Fi. You'll need to install `serial-monitor` to update the Pico over Wi-Fi, as well as initially flash the `picowata_main.uf2` to get the bootloader.  
+
+
 ## Acknowledgements
 
 Thank you to LearnEmbeddedSystems for their webserver template! Which is licensed under MIT in the `network/` folder.

@@ -10,11 +10,15 @@ execute_process(COMMAND
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
 )
 
+set(PICOWOTA_WIFI_SSID ${WIFI_SSID})
+set(PICOWOTA_WIFI_PASS ${WIFI_PASSWORD})
 
 target_compile_definitions(Network PUBLIC
-        WIFI_SSID=\"${WIFI_SSID}\"
-        WIFI_PASSWORD=\"${WIFI_PASSWORD}\"
-        )
+WIFI_SSID=\"${WIFI_SSID}\"
+WIFI_PASSWORD=\"${WIFI_PASSWORD}\"
+PICOWOTA_WIFI_SSID=\"${WIFI_SSID}\"
+PICOWOTA_WIFI_PASS=\"${WIFI_PASSWORD}\"
+)
 
 target_include_directories(Network PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}
@@ -25,4 +29,5 @@ target_link_libraries(Network PUBLIC
         pico_lwip_http
         pico_stdlib
         hardware_adc
+        picowota_reboot
 )

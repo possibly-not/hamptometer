@@ -7,5 +7,6 @@
         <p>Counter: <!--#counter--></p>
         <p>Distance ran on a 28.5cm wheel: <!--#dist--></p>
         <a href="/index.shtml">Refresh</a>
+        <a href="/reflash.cgi"><button>Reflash Pico!</button></a>
    </body>
 </html>

@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.12)
 # Pull in SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(Pico_Hamster C CXX ASM)
+project(Picow_Hamster C CXX ASM)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
@@ -13,8 +13,6 @@ set(PICO_DEBUG_MALLOC 1)
 if (PICO_SDK_VERSION_STRING VERSION_LESS "1.3.0")
     message(FATAL_ERROR "Raspberry Pi Pico SDK version 1.3.0 (or later) required. Your version is ${PICO_SDK_VERSION_STRING}")
 endif()
-
-set(PICO_EXAMPLES_PATH ${PROJECT_SOURCE_DIR})
 
 # Initialize the SDK
 pico_sdk_init()
@@ -31,10 +29,12 @@ endif()
 
 set(WIFI_SSID $ENV{WIFI_SSID})
 message("Using WIFI_SSID from environment ('${WIFI_SSID}')")
+set(WIFI_PASSWORD $ENV{WIFI_PASSWORD} )
 
-set(WIFI_PASSWORD $ENV{WIFI_PASSWORD})
-message("Using WIFI_PASSWORD from environment")
+set(PICOWOTA_WIFI_SSID WIFI_SSID)
+set(PICOWOTA_WIFI_PASS PICOWOTA_WIFI_PASS)
 
+set(PICOWOTA_WIFI_AP 0)
 
 # Add header file directory
 include_directories(network)
@@ -43,6 +43,7 @@ include_directories(utils)
 # Add compilation subdirectory 
 add_subdirectory(network)
 add_subdirectory(utils)
+add_subdirectory(picowota)
 
 add_executable(main
     main.c
@@ -50,9 +51,9 @@ add_executable(main
 
 target_compile_definitions(main PUBLIC
     WIFI_SSID=\"${WIFI_SSID}\"
+    PICOWOTA_WIFI_SSID=\"${WIFI_SSID}\"
     WIFI_PASSWORD=\"${WIFI_PASSWORD}\"
-    PICO_DEBUG_MALLOC=1
-
+    PICOWOTA_WIFI_PASS=\"${WIFI_PASSWORD}\"
 )
 
 target_link_libraries(main PUBLIC
@@ -72,4 +73,6 @@ pico_enable_stdio_usb(main 1)
 pico_enable_stdio_uart(main 0)
 
 pico_add_extra_outputs(main)
+
+picowota_build_combined(main)
 

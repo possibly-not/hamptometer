@@ -19,27 +19,37 @@
 int main(void)
 {
     stdio_init_all();
-    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, LED_SETUP);
-
+    
     printf("%s %d\n", COMPILED_ON, getFreeHeap());
+
+    // init wifi chip so we can turn the LED on asap :)
+    if (cyw43_arch_init_with_country(CYW43_COUNTRY_UK)) {
+        printf("failed to initialise\n");
+        return 1;
+    }
+
+    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, LED_SETUP);
 
     printf("Initialising ADC\n");
     adc_init();
     adc_gpio_init(KY_003_GPIO);
     adc_select_input(2);
 
-    if (cyw43_arch_init_with_country(CYW43_COUNTRY_UK)) {
-        printf("failed to initialise\n");
-        return 1;
-    }
     printf("initialised\n");
 
     cyw43_arch_enable_sta_mode();
     printf("Connecting to %s\n", WIFI_SSID);
 
     while (cyw43_arch_wifi_connect_timeout_ms(WIFI_SSID, WIFI_PASSWORD, CYW43_AUTH_WPA2_AES_PSK, 10000)) {
-        printf("failed to connect\n");
-        sleep_ms(300);
+        printf("Failed to connect!\n");
+        for (size_t i = 0; i < 10; i++)
+        {
+            cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 0);
+            sleep_ms(15);
+            cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
+            sleep_ms(15);
+        }
+        
         //return 1;
     }
     u32_t ip_address = cyw43_state.netif[0].ip_addr.addr; // i hope
