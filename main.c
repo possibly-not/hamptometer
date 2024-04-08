@@ -16,8 +16,6 @@
 
 #define COMPILED_ON " (" __DATE__ " - " __TIME__ ")"
 
-#define KY_003_GPIO 28
-
 int main(void)
 {
     stdio_init_all();
@@ -45,8 +43,8 @@ int main(void)
         //return 1;
     }
     u32_t ip_address = cyw43_state.netif[0].ip_addr.addr; // i hope
-
-    printf("connected at %u.%u.%u.%u\n", ip_address & 0xFF, (ip_address >> 8) & 0xFF, (ip_address >> 16) & 0xFF, (ip_address >> 24) & 0xFF);
+    printf("Connected at %u.%u.%u.%u\n", ip_address & 0xFF, (ip_address >> 8) & 0xFF, (ip_address >> 16) & 0xFF, (ip_address >> 24) & 0xFF);
+    
     // Initialise web server
     httpd_init();
     printf("HTTP server initialised\n");
@@ -72,7 +70,7 @@ int main(void)
     {
         uint16_t result = adc_read();
         // printf("Raw value: 0x%03x, voltage: %f V\n", result, result * conversion_factor);        
-        // no magnet
+        // no magnet (under threshold)
         if (result * conversion_factor >= 1.0) {// arbitrary threshold, goes from like 1.8v to 0.07v under normal conditions. can go up to 3v though
             // if previous check had magnet
             if (bounce){
@@ -96,6 +94,7 @@ int main(void)
             }
 
         }
+        // can probably sleep in the loop a little bit
     }
 
     return 0;

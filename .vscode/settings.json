@@ -89,7 +89,11 @@
         "adc.h": "c",
         "ssi.h": "c",
         "fs.h": "c",
-        "cgi.h": "c"
+        "cgi.h": "c",
+        "httpd.h": "c",
+        "config.h": "c",
+        "double.h": "c",
+        "sf_table.h": "c"
     },
     "cmake.configureOnOpen": false
 }
