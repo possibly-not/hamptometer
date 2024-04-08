@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="stylesheet.css">
+    <head> 
+        <title>Second page!</title> 
+    </head>
+    <body> <h1>Page 2</h1>
+   </body>
+</html>
