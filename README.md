@@ -34,6 +34,10 @@ To reflash the Pico without connecting it to your PC we use Picowota, this puts 
 Thank you to LearnEmbeddedSystems for their webserver template! Which is licensed under MIT in the `network/` folder.
 https://github.com/LearnEmbeddedSystems/pico-w-webserver-template
 
+Thank you to usedbytes for making Picowota! Which is extremely useful to not disturb the expertly ducttaped Pico!
+
+
+
 ## TODO:
     - Remote flashing
     - Long term data storage
