@@ -4,6 +4,12 @@ set(WIFI_PASSWORD "${WIFI_PASSWORD}" CACHE INTERNAL "WiFi password for examples"
 aux_source_directory(. DIR_net_SRCS)
 add_library(Network ${DIR_net_SRCS})
 
+message("Running makefsdata python script at ${CMAKE_CURRENT_LIST_DIR}")
+execute_process(COMMAND
+    python makefsdata.py
+    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+)
+
 
 target_compile_definitions(Network PUBLIC
         WIFI_SSID=\"${WIFI_SSID}\"
