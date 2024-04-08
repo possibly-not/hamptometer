@@ -7,11 +7,10 @@ This project uses a Pico W(H), a KY-003 sensor board and a sticky-backed magnet 
 # Setup
 The KY-003 sensor board is rated at 5v but I've found it works fine at 3v provided by the Pico. As the project uses the Pico's ADC to read the data, the data pin must be connected to the of the 3 working ADC pins, defined within `config.h`, I've chosen to use 28. You may use GPIO pins 26, 27, 28, which are ADC0, ADC1, ADC2 respectively. You may also need to change `adc_select_input(2)` to use the correct ADC module. The GND and 3v3 lines can be connected to the Pico's 3v3 and GND pins.
 
+<img src=".img/KY-003-Hall-Magnetic-Sensor_bb.jpg" width="200" G/>
+
 I have the hall effect sensor head-on towards the magnet, however based on the magnet used, you may need to re-adjust to ensure the magnet is only picked up once per revelation, and not twice (on field entry, on field leave).
 
-![One potential setup](.img/KY-003-Hall-Magnetic-Sensor_bb.jpg =273x459)
-
-## Build
 
 ```
 git clone the repo
