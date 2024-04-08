@@ -1,0 +1,95 @@
+{
+        // These settings tweaks to the cmake plugin will ensure
+    // that you debug using cortex-debug instead of trying to launch
+    // a Pico binary on the host
+    "cmake.statusbar.advanced": {
+        "debug": {
+        "visibility": "hidden"
+        },
+        "launch": {
+        "visibility": "hidden"
+        },
+        "build": {
+        "visibility": "hidden"
+        },
+        "buildTarget": {
+        "visibility": "hidden"
+        }
+        },
+    "cmake.configureArgs": [ 
+            "-DCMAKE_BUILD_TYPE=Debug",
+            "-DPICO_BOARD=pico_w",
+        ],
+        "cmake.buildBeforeRun": true,
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    
+    "files.associations": {
+        "lcd_test.h": "c",
+        "gui_paint.h": "c",
+        "imagedata.h": "c",
+        "dev_config.h": "c",
+        "stdlib.h": "c",
+        "pico.h": "c",
+        "time.h": "c",
+        "stdio.h": "c",
+        "lcd_1in3.h": "c",
+        "stdint.h": "c",
+        "ntp_client.h": "c",
+        "pbuf.h": "c",
+        "cyw43_arch.h": "c",
+        "udp.h": "c",
+        "dns.h": "c",
+        "lwipopts_examples_common.h": "c",
+        "string.h": "c",
+        "picow_ntp_client.h": "c",
+        "locale": "c",
+        "string": "c",
+        "datetime.h": "c",
+        "lwipopts.h": "c",
+        "*.ipp": "c",
+        "__locale": "c",
+        "chrono": "c",
+        "rtc.h": "c",
+        "timetable.h": "c",
+        "gpio.h": "c",
+        "types.h": "c",
+        "stdbool.h": "c",
+        "stddef.h": "c",
+        "rtt_client.h": "c",
+        "picohttps.h": "c",
+        "iana.h": "c",
+        "altcp_tls.h": "c",
+        "infrared.h": "c",
+        "debug.h": "c",
+        "rtt.h": "c",
+        "random": "c",
+        "limits": "c",
+        "array": "c",
+        "atomic": "c",
+        "*.tcc": "c",
+        "concepts": "c",
+        "cstddef": "c",
+        "cstdio": "c",
+        "cwchar": "c",
+        "vector": "c",
+        "functional": "c",
+        "memory": "c",
+        "memory_resource": "c",
+        "optional": "c",
+        "string_view": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "initializer_list": "c",
+        "new": "c",
+        "ranges": "c",
+        "stdexcept": "c",
+        "system_error": "c",
+        "typeinfo": "c",
+        "utility": "c",
+        "adc.h": "c",
+        "ssi.h": "c",
+        "fs.h": "c",
+        "cgi.h": "c"
+    },
+    "cmake.configureOnOpen": false
+}
