@@ -94,7 +94,11 @@
         "config.h": "c",
         "double.h": "c",
         "sf_table.h": "c",
-        "utils.h": "c"
+        "utils.h": "c",
+        "watchdog.h": "c",
+        "tcp_comm.h": "c",
+        "resets.h": "c",
+        "info.h": "c"
     },
     "cmake.configureOnOpen": false
 }

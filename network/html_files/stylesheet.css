@@ -39,11 +39,14 @@ p {
   box-shadow: 1px 1px 2px #bbbbbb;
 }
 
-
 .inline {
   display: inline;
   vertical-align: middle;
 }
+
+table, th, td {
+  border: 1px solid;
+} 
 
 /* https://stackoverflow.com/a/21320622 */
 @-webkit-keyframes rotating

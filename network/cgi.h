@@ -6,6 +6,8 @@
 
 #include "picowota/reboot.h"
 
+#include "info.h"
+
 // CGI handler which is run when a request for /reflash.cgi is detected
 const char * cgi_reflash_handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[])
 {
@@ -18,7 +20,7 @@ const char * cgi_reflash_handler(int iIndex, int iNumParams, char *pcParam[], ch
 // CGI handler which is run when a request for /reset_counter.cgi is detected
 const char * cgi_reset_counter_handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[])
 {
-    counter = 0;
+    daily_info->current_counter = 0;
     // Send the index page back to the user
     // Not sure if it'll even make it past this though!
     return "/index.shtml";
@@ -30,8 +32,8 @@ const char * cgi_reset_counter_handler(int iIndex, int iNumParams, char *pcParam
 static const tCGI cgi_handlers[] = {
     {
         // Html request for "/led.cgi" triggers cgi_handler
-        "/reflash.cgi", cgi_reflash_handler,
-        "/reset_counter.cgi", cgi_reset_counter_handler
+        {"/reflash.cgi", cgi_reflash_handler},
+        {"/reset_counter.cgi", cgi_reset_counter_handler}
     },
 };
 

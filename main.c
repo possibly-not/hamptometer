@@ -10,11 +10,12 @@
  
 #include "utils.h"
 #include "lwipopts.h"
-#include "info.c"
+#include "info.h"
 #include "ssi.h"
 #include "cgi.h"
 
 #define COMPILED_ON " (" __DATE__ " - " __TIME__ ")"
+
 
 int main(void)
 {
@@ -55,6 +56,11 @@ int main(void)
     u32_t ip_address = cyw43_state.netif[0].ip_addr.addr; // i hope
     printf("Connected at %u.%u.%u.%u\n", ip_address & 0xFF, (ip_address >> 8) & 0xFF, (ip_address >> 16) & 0xFF, (ip_address >> 24) & 0xFF);
     
+
+    //
+    daily_info = init_info();
+    daily_info->entry_count = 0;
+    printf("%d\n", daily_info->current_counter);
     // Initialise web server
     httpd_init();
     printf("HTTP server initialised\n");
@@ -94,9 +100,9 @@ int main(void)
             // if previous check didnt have magnet
             if (!bounce){
                 bounce = true;
-                counter += 1;
+                daily_info->current_counter += 1;
 
-                printf("%d\n", counter);
+                printf("%d\n", daily_info->current_counter);
 
             // if previous check had magnet and we're currently in magnet
             } else {

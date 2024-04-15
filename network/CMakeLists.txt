@@ -30,4 +30,5 @@ target_link_libraries(Network PUBLIC
         pico_stdlib
         hardware_adc
         picowota_reboot
+        Info
 )
