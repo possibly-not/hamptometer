@@ -51,7 +51,7 @@ u16_t ssi_handler(int tag_index, char *insert, int max_insert_len,
 
       printed = snprintf(insert, max_insert_len,       
       "<tr>\n"
-        "<td>%d/%d/%d</td>\n"
+        "<td>%d/%02d/%02d</td>\n"
         "<td>%d</td>\n"
         "<td>%.05fkm</td>\n"
       "</tr>\n", de->year, de->month, de->day, de->counter, C2KM(de->counter));

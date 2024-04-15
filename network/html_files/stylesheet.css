@@ -1,7 +1,7 @@
 body {
   background-color: rgb(166, 167, 254);
   font-family: Roboto;
-  color: white;
+  color: black;
 }
 
 h1 {
@@ -48,7 +48,7 @@ p {
 
 table {
   background: #4e3279;
-  color: #fff;
+  color: #ffffff;
   border-radius: .4em;
   overflow: hidden;
   font-size: medium;

@@ -1,5 +1,5 @@
 # Pico W HTTP Hamster Wheel Pedometer
-![Screenshot of ${pico_ip}/index.shtml](.img/sc0_1_0.png)
+![Screenshot of ${pico_ip}/index.shtml](.img/sc0_2_0.png)
 
 This project uses a Pico W(H), a KY-003 sensor board and a sticky-backed magnet to count my hamster's wheel's rotations at night.
 

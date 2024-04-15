@@ -17,11 +17,7 @@
         <p>Distance ran on a 28.5cm wheel:<span class="counter"> <!--#dist--></span> </p>
         <div>
             <!--#cinfo--> 
-            <table>
-                <tr><th>Date</th><th>Spins</th><th>Km</th></tr>
-                <tr><td>12323232</td><td>3</td><td>1</td></tr>
-            </table>
-            </div>
+        </div>
         <a href="/index.shtml">Refresh<br></a>
         <br>
         <details>
