@@ -39,6 +39,7 @@ Thank you to usedbytes for making Picowota! Which is extremely useful to not dis
 
 
 ## TODO:
+    - Add counter update without refresh
     - Remote flashing
     - Long term data storage
         - Add an NTP client to setup the RTC 

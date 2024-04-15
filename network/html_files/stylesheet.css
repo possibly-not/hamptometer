@@ -1,12 +1,18 @@
 body {
   background-color: rgb(166, 167, 254);
+  font-family: Roboto;
 }
 
 h1 {
   color: navy;
   margin-left: 0px;
-}
+  font-family: Roboto;
+  font-weight: 900;
 
+}
+button {
+  font-family: Roboto;
+}
 details > summary {
   padding: 4px;
   width: 200px;
@@ -17,13 +23,22 @@ details > summary {
   cursor: pointer;
 }
 
-details > p {
+p {
+  font-size: large;
+}
+
+.counter {
+  color: coral;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+} 
+.debug {
   color: white;
-  background-color: #2e1b1b;
+  background-color: #491083;
   padding: 4px;
   margin: 0;
   box-shadow: 1px 1px 2px #bbbbbb;
 }
+
 
 .inline {
   display: inline;

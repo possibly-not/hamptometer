@@ -60,7 +60,7 @@ int main(void)
     printf("HTTP server initialised\n");
 
     // Configure SSI and CGI handler
-    ssi_init(counter); 
+    ssi_init(); 
     printf("SSI Handler initialised\n");
     cgi_init();
     printf("CGI Handler initialised\n");

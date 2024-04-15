@@ -2,6 +2,7 @@
 <html>
     <link rel="stylesheet" href="stylesheet.css">
     <script src="script.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet'>
     <head> 
         <title>
             Hamster Pedometer
@@ -12,16 +13,20 @@
             <img class="inline rotating" src="https://raw.githubusercontent.com/possibly-not/hamptometer/main/.img/robo-transparent.png" width="100" height="100" />
             Spin counter
         </h1>
-        <p>Counter: <!--#counter--></p>
-        <p>Distance ran on a 28.5cm wheel: <!--#dist--></p>
-        <a href="/index.shtml">Refresh</a>
+        <p>Counter: <span class="counter"> <!--#counter--></p></span> 
+        <p>Distance ran on a 28.5cm wheel:<span class="counter"> <!--#dist--></span> </p>
+        <div>
+            <!--#cinfo-->
+        </div>
+        <a href="/index.shtml">Refresh<br></a>
         <br>
         <details>
-            <p>
             <summary>Debug Info</summary>
-            <a href="/reflash.cgi"><button>Reflash Pico!</button></a>
-            <p>Heap status: <!--#heapinfo--></p>
-        </p>
+            <section id="debug">
+                <a href="/reflash.cgi"><button>Reflash Pico!</button></a>
+                <a href="/reset_counter.cgi"><button>Reset counter</button></a>
+                <p>Heap status: <!--#heapinfo-->
+            </section>
         </details>           
    </body>
 </html>
