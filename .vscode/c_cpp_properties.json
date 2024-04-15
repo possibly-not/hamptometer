@@ -11,7 +11,8 @@
                 "/usr/share/pico-sdk/lib/cyw43-driver/src",
                 "${workspaceFolder}/utils",
                 "${workspaceFolder}",
-                "${workspaceFolder}/picowota/picowota_reboot/include"
+                "${workspaceFolder}/picowota/picowota_reboot/include",
+                "${workspaceFolder}/info"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/arm-none-eabi-gcc",

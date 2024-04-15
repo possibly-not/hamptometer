@@ -56,7 +56,7 @@ u16_t ssi_handler(int tag_index, char *insert, int max_insert_len,
         "<td>%.05fkm</td>\n"
       "</tr>\n", de->year, de->month, de->day, de->counter, C2KM(de->counter));
 
-      next_tag_part = current_tag_part + (u16_t)1;
+      *next_tag_part = current_tag_part + (u16_t)1;
     }
   }
   break;

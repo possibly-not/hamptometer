@@ -29,6 +29,7 @@ target_link_libraries(Network PUBLIC
         pico_lwip_http
         pico_stdlib
         hardware_adc
+        hardware_rtc
         picowota_reboot
         Info
 )

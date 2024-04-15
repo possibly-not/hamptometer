@@ -6,6 +6,8 @@
 
 #include "picow_ntp_client.h"
 
+#include "info.h"
+
 // Called with results of operation
 void ntp_result(NTP_T *state, int status, time_t *result)
 {
@@ -26,6 +28,12 @@ void ntp_result(NTP_T *state, int status, time_t *result)
         printf("Updated the RTC\n");
         // Start the RTC
         rtc_set_datetime(&t);
+
+        // we can update today's entry as well :) cheeky hack
+        daily_info->days[daily_info->entry_count - 1]->year = t.year;
+        daily_info->days[daily_info->entry_count - 1]->month = t.month;
+        daily_info->days[daily_info->entry_count - 1]->day = t.day;
+
     }
 
     if (state->ntp_resend_alarm > 0)

@@ -7,9 +7,11 @@
 #include <hardware/gpio.h>
 #include <lwip/apps/httpd.h>
 #include <pico/cyw43_arch.h>
- 
+#include <pico/util/datetime.h>
+
 #include "utils.h"
 #include "lwipopts.h"
+#include "picow_ntp_client.h"
 #include "info.h"
 #include "ssi.h"
 #include "cgi.h"
@@ -57,10 +59,37 @@ int main(void)
     printf("Connected at %u.%u.%u.%u\n", ip_address & 0xFF, (ip_address >> 8) & 0xFF, (ip_address >> 16) & 0xFF, (ip_address >> 24) & 0xFF);
     
 
-    //
     daily_info = init_info();
-    daily_info->entry_count = 0;
-    printf("%d\n", daily_info->current_counter);
+    daily_info->entry_count = 1;
+
+
+    datetime_t t = {
+        .year = 2020,
+        .month = 01,
+        .day = 01,
+        .dotw = 1, // 0 is Sunday
+        .hour = 00,
+        .min = 00,
+        .sec = 00};
+
+    // Start the RTC
+    rtc_init();
+    rtc_set_datetime(&t);
+
+    // Start NTP client
+    NTP_T *ntp_state = ntp_init();
+
+    if (!ntp_state)
+    {
+        printf("NTP initialization failed!\n");
+        // return 1;
+    }
+
+    request_ntp_update(ntp_state);
+
+    rtc_get_datetime(&t);
+
+
     // Initialise web server
     httpd_init();
     printf("HTTP server initialised\n");
@@ -79,7 +108,8 @@ int main(void)
 
     bool good = true;
     bool bounce = true;
-
+    bool added_entry = false;
+    uint32_t count = 0;
 
     cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, LED_DONE);
     while (good)
@@ -101,7 +131,7 @@ int main(void)
             if (!bounce){
                 bounce = true;
                 daily_info->current_counter += 1;
-
+                daily_info->days[daily_info->entry_count - 1]->counter++;
                 printf("%d\n", daily_info->current_counter);
 
             // if previous check had magnet and we're currently in magnet
@@ -111,6 +141,28 @@ int main(void)
 
         }
         // can probably sleep in the loop a little bit
+        count++;
+        // check every 500 loops
+        // hopefully we do more than 500 loops a minute..
+        if (count > 500) {
+            count = 0;
+            
+            rtc_get_datetime(&t);
+            if (!added_entry && t.hour == 11 && t.min == 59) {
+                added_entry = true;
+                daily_info->entry_count++;
+                DayEntry *de = daily_info->days[daily_info->entry_count];
+                de->year = t.year;
+                de->month = t.month;
+                de->day = t.day;
+                de->counter = daily_info->current_counter;
+
+                daily_info->current_counter = 0;
+                // and hope entry_count < max entries 
+            } else {
+                added_entry = false;
+            }
+        }
     }
 
     return 0;

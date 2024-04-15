@@ -4,7 +4,7 @@
 #include <pico/stdlib.h>
 
 #define INFO_DEFAULT_ENTRIES 365
-#define TABLE_HEADER "<table>\n<tr><th>Date</th><th>Spins</t<th>Km</th></tr>\n"
+#define TABLE_HEADER "<table>\n<tr><th>Date</th><th>Spins</th><th>Km</th></tr>\n"
 #define TABLE_END "</table>\n"
 #define C2KM(counter) ((counter * WHEEL_SIZE_CM * PI) * 0.00001)
 
