@@ -20,7 +20,7 @@ const char * cgi_reflash_handler(int iIndex, int iNumParams, char *pcParam[], ch
 // CGI handler which is run when a request for /reset_counter.cgi is detected
 const char * cgi_reset_counter_handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[])
 {
-    daily_info->current_counter = 0;
+    daily_info->days[daily_info->entry_count - 1]->counter = 0;
     // Send the index page back to the user
     // Not sure if it'll even make it past this though!
     return "/index.shtml";

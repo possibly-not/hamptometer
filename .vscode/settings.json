@@ -98,7 +98,8 @@
         "watchdog.h": "c",
         "tcp_comm.h": "c",
         "resets.h": "c",
-        "info.h": "c"
+        "info.h": "c",
+        "reboot.h": "c"
     },
     "cmake.configureOnOpen": false
 }
