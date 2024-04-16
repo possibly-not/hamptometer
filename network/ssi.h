@@ -10,7 +10,7 @@
 #include "config.h"
 
 // SSI tags - tag length limited to 8 bytes by default
-const char *ssi_tags[] = {"counter", "dist", "heapinfo", "cinfo"};
+const char *ssi_tags[] = {"counter", "dist", "heapinfo", "cinfo", "time"};
 
 u16_t ssi_handler(int tag_index, char *insert, int max_insert_len,
 			u16_t current_tag_part, u16_t *next_tag_part)
@@ -22,12 +22,13 @@ u16_t ssi_handler(int tag_index, char *insert, int max_insert_len,
   {
   case 0: // counter
   {
-    printed = snprintf(insert, max_insert_len, "%d", daily_info->current_counter);
+
+    printed = snprintf(insert, max_insert_len, "%d", daily_info->days[daily_info->entry_count - 1]->counter);
   }
   break;
   case 1: // counter distance
   {
-    printed = snprintf(insert, max_insert_len, "%.05fkm", C2KM(daily_info->current_counter));
+    printed = snprintf(insert, max_insert_len, "%.05fkm", C2KM(daily_info->days[daily_info->entry_count - 1]->counter));
   }
   break;
   case 2: // heap info
@@ -58,6 +59,13 @@ u16_t ssi_handler(int tag_index, char *insert, int max_insert_len,
 
       *next_tag_part = current_tag_part + (u16_t)1;
     }
+  }
+  break;
+  case 4: // time
+  {
+      datetime_t t;
+      rtc_get_datetime(&t);
+      printed = snprintf(insert, max_insert_len, "%d/%d/%d %02d:%02d:%02d", t.year, t.month, t.day, t.hour, t.min, t.sec);
   }
   break;
   default:

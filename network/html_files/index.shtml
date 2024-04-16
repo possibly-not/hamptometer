@@ -25,7 +25,8 @@
             <section id="debug">
                 <a href="/reflash.cgi"><button>Reflash Pico!</button></a>
                 <a href="/reset_counter.cgi"><button>Reset counter</button></a>
-                <p>Heap status: <!--#heapinfo-->
+                <p>Heap status: <!--#heapinfo--></p>
+                <p>Time: <!--#time--></p>
             </section>
         </details>           
    </body>
