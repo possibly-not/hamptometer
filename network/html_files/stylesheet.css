@@ -52,7 +52,7 @@ table {
   border-radius: .4em;
   overflow: hidden;
   font-size: medium;
-  width: 30%;
+  width: 60%;
 
   tr {
     border-color: lighten(#ff0303, 100%);
