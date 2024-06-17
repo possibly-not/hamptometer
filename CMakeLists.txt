@@ -61,6 +61,7 @@ target_link_libraries(main PUBLIC
     pico_lwip_http
     hardware_rtc
     hardware_adc
+    hardware_watchdog
     Network
     Utils
 )
